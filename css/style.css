@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.input-wrapper{
+    margin-bottom: 10px;
+
+}
+
+.input-wrapper input {
+
+    padding:12px 10px ;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+.cursor-pointer {
+    cursor: pointer;
+
+
+}
+
+.err {
+    color: red;
+}
