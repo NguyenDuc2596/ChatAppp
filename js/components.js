@@ -1,5 +1,5 @@
 const componets = {}
-componets.registerPage=  `
+componets.registerPage = `
 <div class="register-container">
         <div class="background-img"> </div>
         <div class="form-wrapper">
@@ -54,7 +54,7 @@ componets.registerPage=  `
     </div>
 
 `
-componets.loginPage= `  
+componets.loginPage = `  
 <div class="login-container">
 <div class="background-img"></div>
 
@@ -95,3 +95,28 @@ componets.loginPage= `
 `
 
 
+componets.chatPage = `
+<div class="chat-container">
+<div class="header">MindX Chat</div>
+<div class="main">
+    <div class="conversation-detail">
+        <div class="conversation-title">First conversation</div>
+        <div class="list-meassage">
+            <div class="message message-mine">
+                <div class="message-content">Hello</div>
+            </div>
+
+            <div class="message message-other">
+                <div class="owner">HongThien</div>
+                <div class="message-content">Hello</div>
+            </div>
+        </div>
+        <form id="send-message-form">
+            <input type="text" placeholder="Type a message" name="message">
+            <button class="btn">Send</button>
+        </form>
+    </div>
+</div>
+
+</div>
+`
