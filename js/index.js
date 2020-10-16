@@ -2,13 +2,14 @@ window.onload = () => {
 
   
   var firebaseConfig = {
-     apiKey: "AIzaSyDPFM4Lo2QLX2QB1dceTbwJfaZGSyNAesU",
-     authDomain: "mindx-chat-app.firebaseapp.com",
-     databaseURL: "https://mindx-chat-app.firebaseio.com",
-     projectId: "mindx-chat-app",
-     storageBucket: "mindx-chat-app.appspot.com",
-     messagingSenderId: "159064763496",
-     appId: "1:159064763496:web:657572c725d8fe7ff25fdd"
+    apiKey: "AIzaSyD-WOE8HINVQft5U9vBg_KsILTYXxUYL8g",
+    authDomain: "chatapp-20702.firebaseapp.com",
+    databaseURL: "https://chatapp-20702.firebaseio.com",
+    projectId: "chatapp-20702",
+    storageBucket: "chatapp-20702.appspot.com",
+    messagingSenderId: "1002977410884",
+    appId: "1:1002977410884:web:a0655cf9d8c38f46e0e111",
+    measurementId: "G-1Q4GWXRXS4"
   };
   
   firebase.initializeApp(firebaseConfig);
