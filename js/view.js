@@ -1,22 +1,22 @@
 
 const view = {}
 view.setActiveScreen = (screenName) => {
-  switch(screenName) {
+  switch (screenName) {
     case 'welcomeScreen':
-      document.getElementById('app').innerHTML 
-      = components.welcomPage
-    break
+      document.getElementById('app').innerHTML
+        = components.welcomPage
+      break
     case 'registerPage':
       document.getElementById('app').innerHTML
-      = components.registerPage
+        = components.registerPage
       document.getElementById('redirect-login')
-      .addEventListener('click', () => {
-        view.setActiveScreen('loginPage')
-      })
+        .addEventListener('click', () => {
+          view.setActiveScreen('loginPage')
+        })
       const registerForm = document.getElementById('register-form')
       registerForm.addEventListener('submit', (event) => {
         event.preventDefault()
-        const dataRegister= {
+        const dataRegister = {
           firstName: registerForm.firstName.value,
           lastName: registerForm.lastName.value,
           email: registerForm.email.value,
@@ -25,64 +25,59 @@ view.setActiveScreen = (screenName) => {
         }
         controller.register(dataRegister)
       })
-    break
+      break
     case 'loginPage':
-      document.getElementById('app').innerHTML= components.loginPage
+      document.getElementById('app').innerHTML = components.loginPage
       document.getElementById('redirect-register')
-      .addEventListener('click', () => {
-        view.setActiveScreen('registerPage')
-      })
+        .addEventListener('click', () => {
+          view.setActiveScreen('registerPage')
+        })
       const loginForm = document.getElementById('login-form')
       loginForm.addEventListener('submit', (e) => {
         e.preventDefault()
         const dataToLogin = {
-          email: loginForm.email.value, 
+          email: loginForm.email.value,
           password: loginForm.password.value
         }
         controller.login(dataToLogin)
       })
-    break
-    case 'chatPage': 
+      break
+    case 'chatPage':
       document.getElementById('app').innerHTML = components.chatPage
       const sendMessageForm = document.getElementById('send-message-form')
-      sendMessageForm.addEventListener('submit',(e) => {
-        e.preventDefault()  
+      sendMessageForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+
         const message = sendMessageForm.message.value
-        console.log(message)
-
         const messageSend = {
-          owner: model.currentUser.email, 
-          content: message // của mình gửi
-        }// chỉ hiện thị mình gửi
-
-        const messageFromBot = {
-          owner: 'Bot',
-          content: message
+          owner: model.currentUser.email,
+          content: message,
+          createdAt: new Date().toISOString()
         }
-        if(message.trim() !== ''){
-        view.addMessage(messageSend)
-        view.addMessage(messageFromBot)
-        sendMessageForm.message.value = ''
-        // cái .trim() loại bỏ cái dấu cách
-      }
+        if (message.trim() !== '') {
+          model.addMessage(messageSend)
+          sendMessageForm.message.value = ''
+        }
       })
-    break
+      // lay cac cuoc hoi thoai ve
+      model.getConversations()
+      // lang nghe thay doi cua cac cuoc hoi thoai
+      model.listenConversationChange()
+      break
   }
 }
 view.setErrorMessage = (elementId, message) => {
   document.getElementById(elementId).innerText = message
 }
-
-//function
 view.addMessage = (message) => {
-  const messageWrapper = document.createElement('div') // tạo 1 thẻ div bằng js : <div> ,/div>
-  messageWrapper.classList.add('message') // add class cho cái thẻ div mình vừa tạo
+  const messageWrapper = document.createElement('div')
+  messageWrapper.classList.add('message')
   if(model.currentUser.email === message.owner) {
     messageWrapper.classList.add('message-mine')
     messageWrapper.innerHTML = `
     <div class="message-content">${message.content}</div>
     `
-  } else { 
+  } else {
     messageWrapper.classList.add('message-other')
     messageWrapper.innerHTML = `
     <div class="owner">${message.owner}</div>
@@ -91,5 +86,16 @@ view.addMessage = (message) => {
   }
   document.querySelector('.list-messages').appendChild(messageWrapper)
 }
+// <div class="message message-mine "> 
+//    <div class="message-content">ahihi</div>
+// </div>
 
-// <div class= "message" > </div>
+view.showCurrentConversation= () => {
+  document.querySelector('.list-messages').innerHTML = ''
+  document.querySelector('.conversation-title').innerHTML = ''
+  // document.querySelector('.conversation-title').innerHTML
+  for (const oneMessage of model.currentConversation.messages) {
+    view.addMessage(oneMessage)
+    
+  }
+}

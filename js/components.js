@@ -72,6 +72,7 @@ components.chatPage =
   <div class="conversation-detail">
     <div class="conversation-title">First conversation</div>
     <div class="list-messages">
+    
     </div>
     <form id="send-message-form">
       <input type="text" placeholder="Type a message" name="message">
