@@ -6,7 +6,8 @@ height:  64px;
 line-height: 64px;
 font-size: 24px;
 
-/* display: flex;
+/* Cách khác căn giữa(Tổng quát)
+display: flex;
 justify-content: center;
 align-items: center; */ 
 
@@ -24,8 +25,9 @@ align-items: center; */
 .chat-container .conversation-detail {
 
     display: flex;
-    flex-direction: column;
-
+    flex-direction: column; 
+    /*flex+column= hiển thị cùng 1 cột thay vì 1 hàng */
+  
 }
 
 .chat-container  .list-meassage {
@@ -64,6 +66,7 @@ align-items: center; */
         flex-direction: column;
       }
       .chat-container .list-messages{
+        overflow-y: auto;
         flex-grow: 1;
       }
       #send-message-form {
@@ -75,6 +78,7 @@ align-items: center; */
         border: none;
         width: 100%;
         outline: 0;
+         /* outline là 1 cái ngoài margin*/ 
       }
       #send-message-form button {
         position: absolute;
@@ -86,6 +90,7 @@ align-items: center; */
       }
       .chat-container .main{
         height: calc(100vh - 64px);
+         /* cách trừ khác đơn vị */ 
       }
       .chat-container .conversation-detail{
         height: 100%;
@@ -94,8 +99,8 @@ align-items: center; */
         background-color: #dbdbdb;
         padding: 10px;
         border-radius: 8px;
-        max-width: 45%;
-        width: max-content;
+        max-width: 45%; /* Nội dung không quá dài*/ 
+        width: max-content; /* khung bằng nội dung tn */ 
       }
       .list-messages .message.message-mine{
         display: flex;

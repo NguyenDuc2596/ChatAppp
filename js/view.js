@@ -27,8 +27,7 @@ view.setActiveScreen = (screenName) => {
       })
     break
     case 'loginPage':
-      document.getElementById('app').innerHTML
-      = components.loginPage
+      document.getElementById('app').innerHTML= components.loginPage
       document.getElementById('redirect-register')
       .addEventListener('click', () => {
         view.setActiveScreen('registerPage')
@@ -50,16 +49,22 @@ view.setActiveScreen = (screenName) => {
         e.preventDefault()  
         const message = sendMessageForm.message.value
         console.log(message)
+
         const messageSend = {
-          owner: model.currentUser.email,
-          content: message
-        }
+          owner: model.currentUser.email, 
+          content: message // của mình gửi
+        }// chỉ hiện thị mình gửi
+
         const messageFromBot = {
           owner: 'Bot',
           content: message
         }
+        if(message.trim() !== ''){
         view.addMessage(messageSend)
         view.addMessage(messageFromBot)
+        sendMessageForm.message.value = ''
+        // cái .trim() loại bỏ cái dấu cách
+      }
       })
     break
   }
@@ -67,15 +72,17 @@ view.setActiveScreen = (screenName) => {
 view.setErrorMessage = (elementId, message) => {
   document.getElementById(elementId).innerText = message
 }
+
+//function
 view.addMessage = (message) => {
-  const messageWrapper = document.createElement('div')
-  messageWrapper.classList.add('message')
+  const messageWrapper = document.createElement('div') // tạo 1 thẻ div bằng js : <div> ,/div>
+  messageWrapper.classList.add('message') // add class cho cái thẻ div mình vừa tạo
   if(model.currentUser.email === message.owner) {
     messageWrapper.classList.add('message-mine')
     messageWrapper.innerHTML = `
     <div class="message-content">${message.content}</div>
     `
-  } else {
+  } else { 
     messageWrapper.classList.add('message-other')
     messageWrapper.innerHTML = `
     <div class="owner">${message.owner}</div>
@@ -84,6 +91,5 @@ view.addMessage = (message) => {
   }
   document.querySelector('.list-messages').appendChild(messageWrapper)
 }
-// <div class="message message-mine "> 
-//    <div class="message-content">ahihi</div>
-// </div>
+
+// <div class= "message" > </div>

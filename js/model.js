@@ -34,3 +34,20 @@ model.login = async ({email, password}) => {
     console.log(err)
   }
 }
+
+model.addMessageToFirebase = (messageSend) => {
+  let date = new Date();
+  console.log(date)
+  const data = {
+      content : messageSend.content,
+      createAt : date.toISOString(),
+      owner : messageSend.owner,
+
+  }
+  console.log(data.createAt)
+  const dataUpdate = {
+      messages : firebase.firestore.FieldValue.arrayUnion(data)
+  }
+const docId = 'KaWvJS3dzujq5ffJLkjr'
+firebase.firestore().collection('conversations').doc(docId).update(dataUpdate)
+}
