@@ -1,22 +1,22 @@
 
 const view = {}
 view.setActiveScreen = (screenName) => {
-  switch (screenName) {
+  switch(screenName) {
     case 'welcomeScreen':
-      document.getElementById('app').innerHTML
-        = components.welcomPage
-      break
+      document.getElementById('app').innerHTML 
+      = components.welcomPage
+    break
     case 'registerPage':
       document.getElementById('app').innerHTML
-        = components.registerPage
+      = components.registerPage
       document.getElementById('redirect-login')
-        .addEventListener('click', () => {
-          view.setActiveScreen('loginPage')
-        })
+      .addEventListener('click', () => {
+        view.setActiveScreen('loginPage')
+      })
       const registerForm = document.getElementById('register-form')
       registerForm.addEventListener('submit', (event) => {
         event.preventDefault()
-        const dataRegister = {
+        const dataRegister= {
           firstName: registerForm.firstName.value,
           lastName: registerForm.lastName.value,
           email: registerForm.email.value,
@@ -25,36 +25,36 @@ view.setActiveScreen = (screenName) => {
         }
         controller.register(dataRegister)
       })
-      break
+    break
     case 'loginPage':
-      document.getElementById('app').innerHTML = components.loginPage
+      document.getElementById('app').innerHTML
+      = components.loginPage
       document.getElementById('redirect-register')
-        .addEventListener('click', () => {
-          view.setActiveScreen('registerPage')
-        })
+      .addEventListener('click', () => {
+        view.setActiveScreen('registerPage')
+      })
       const loginForm = document.getElementById('login-form')
       loginForm.addEventListener('submit', (e) => {
         e.preventDefault()
         const dataToLogin = {
-          email: loginForm.email.value,
+          email: loginForm.email.value, 
           password: loginForm.password.value
         }
         controller.login(dataToLogin)
       })
-      break
-    case 'chatPage':
+    break
+    case 'chatPage': 
       document.getElementById('app').innerHTML = components.chatPage
       const sendMessageForm = document.getElementById('send-message-form')
-      sendMessageForm.addEventListener('submit', (e) => {
-        e.preventDefault()
-
+      sendMessageForm.addEventListener('submit',(e) => {
+        e.preventDefault()  
         const message = sendMessageForm.message.value
         const messageSend = {
           owner: model.currentUser.email,
           content: message,
           createdAt: new Date().toISOString()
         }
-        if (message.trim() !== '') {
+        if(message.trim() !== '') {
           model.addMessage(messageSend)
           sendMessageForm.message.value = ''
         }
@@ -63,7 +63,7 @@ view.setActiveScreen = (screenName) => {
       model.getConversations()
       // lang nghe thay doi cua cac cuoc hoi thoai
       model.listenConversationChange()
-      break
+    break
   }
 }
 view.setErrorMessage = (elementId, message) => {
@@ -90,12 +90,11 @@ view.addMessage = (message) => {
 //    <div class="message-content">ahihi</div>
 // </div>
 
-view.showCurrentConversation= () => {
+view.showCurrentConversation = () => {
   document.querySelector('.list-messages').innerHTML = ''
-  document.querySelector('.conversation-title').innerHTML = ''
-  // document.querySelector('.conversation-title').innerHTML
-  for (const oneMessage of model.currentConversation.messages) {
+  document.querySelector('.conversation-title').innerHTML
+   = model.currentConversation.title
+  for(const oneMessage of model.currentConversation.messages) {
     view.addMessage(oneMessage)
-    
   }
 }
