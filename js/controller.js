@@ -65,3 +65,24 @@ controller.login = ({email, password}) => {
     model.login({email, password})
   }
 }
+
+/// điều kiện thêm mới cuộc trò chuyện
+controller.NewConversation = ({title,user}) => {
+  if(title === ''){
+      view.setErrorMessage('conversation-name-error','Please input name conversation');
+  }else{
+      view.setErrorMessage('conversation-name-error','');
+  }
+  if(user === ''){
+      view.setErrorMessage('firend-email-error','Please input email of your friend');
+  }else{
+      view.setErrorMessage('friend-email-error','');
+  }
+  if(title!== '' && user !== ''){
+      const dataNewConversation = {
+          title,
+          user,
+      }
+      model.createNewConversation(dataNewConversation);
+  }
+}

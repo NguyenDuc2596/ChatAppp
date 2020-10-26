@@ -6,7 +6,7 @@
     width: 70%;
     height: 100%;
     background-size: cover;
-    background-image: url(..//images/a1.jpg);
+    background-image: url(../images/a1.jpg);
   }
   .login-container .form-wrapper{
     width: 30%;
